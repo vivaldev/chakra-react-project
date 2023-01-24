@@ -1,7 +1,9 @@
 // @ts-nocheck
 import React from "react";
+
 import { useState, useEffect } from "react";
 import { Flex, Box, Card, Heading, Text, Button } from "@chakra-ui/react";
+import data from "./data";
 
 const SecondFrame = (props) => {
   return <Heading as="h2">I want to play a game.</Heading>;
@@ -24,7 +26,20 @@ function App() {
       align="center"
       w="100vw"
       h="100vh"
-    ></Flex>
+    >
+      <Flex
+        border="5px double black"
+        w="60%"
+        h="50vh"
+        justify="space-around"
+        flexDirection="column"
+        align="center"
+      >
+        {data.map((frame) => {
+          return <p>{frame.content}</p>;
+        })}
+      </Flex>
+    </Flex>
   );
 }
 
