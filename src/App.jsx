@@ -11,6 +11,7 @@ function App() {
   const [frameCount, setFrameCount] = useState(0);
   const [startTheShow, setStartTheShow] = useState(false);
   console.log(startTheShow);
+
   const [msgArr, setMsgArr] = useState([
     "Welcome to my React Demo App!",
     "This is a practice work that's ending",
@@ -47,6 +48,7 @@ function App() {
         align="center"
       >
         {startTheShow ? null : <Button onClick={getTheShow}>Start here</Button>}
+        {frameCount ? <h3>{msgArr[frameCount]}</h3> : null}
       </Flex>
     </Flex>
   );
