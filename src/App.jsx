@@ -1,23 +1,34 @@
 // @ts-nocheck
 import React from "react";
+import FirstFrame from "./frames/FirstFrame";
+import SecondFrame from "./frames/SecondFrame";
 
 import { useState, useEffect } from "react";
 import { Flex, Box, Card, Heading, Text, Button } from "@chakra-ui/react";
 import data from "./data";
 
-const SecondFrame = (props) => {
-  return <Heading as="h2">I want to play a game.</Heading>;
-};
-
 function App() {
-  const [currentScene, setCurrentScene] = useState(0);
+  const [frameCount, setFrameCount] = useState(0);
+  const [startTheShow, setStartTheShow] = useState(false);
+  console.log(startTheShow);
+  const [msgArr, setMsgArr] = useState([
+    "Welcome to my React Demo App!",
+    "This is a practice work that's ending",
+    "a month long gap - ever since previous record",
+    "which was 4 days then",
+  ]);
+
+  const getTheShow = () => {
+    setFrameCount((prevCount) => prevCount + 1);
+    setStartTheShow((prevValue) => !prevValue);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentScene((prevScene) => prevScene + 1);
+      setFrameCount((prevCount) => prevCount + 1);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [frameCount]);
 
   return (
     <Flex
@@ -35,9 +46,7 @@ function App() {
         flexDirection="column"
         align="center"
       >
-        {data.map((frame) => {
-          return <p>{frame.content}</p>;
-        })}
+        {startTheShow ? null : <Button onClick={getTheShow}>Start here</Button>}
       </Flex>
     </Flex>
   );
